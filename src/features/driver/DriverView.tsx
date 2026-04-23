@@ -52,7 +52,7 @@ export const DriverView = () => {
                 setData(newData);
 
                 if (newData.emergency_mode === false) setHandledEmergency(false);
-                if (newData.cars_count <= 5) setHandledTraffic(false);
+                if (newData.cars_count <= 3) setHandledTraffic(false);
                 if (newData.air_quality <= 70) setHandledPollution(false);
             })
             .subscribe();
@@ -94,7 +94,7 @@ export const DriverView = () => {
     if (!data) return <div className="text-white text-center mt-20">Loading...</div>;
 
     const showEmergencyAlert = data.emergency_mode && !handledEmergency;
-    const showTrafficAlert = !showEmergencyAlert && data.cars_count > 5 && !handledTraffic;
+    const showTrafficAlert = !showEmergencyAlert && data.cars_count > 3 && !handledTraffic;
     const showPollutionAlert = !showEmergencyAlert && !showTrafficAlert && data.air_quality > 70 && !handledPollution;
 
     return (
